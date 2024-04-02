@@ -133,11 +133,11 @@ from Genre import Genre
 from User import User
 
 print("Welcome to the library system!\n")
-username = input("Please input username:\n").strip().lower()
+username = input("Please input username:\n").strip().lower().title()
 User.addUser(username)
 
 while True:
-    print("What menu would you like to navigate to?\n")
+    print("\nWhat menu would you like to navigate to?\n")
     action = input("Choose between: Book, User, Author, Genre - or enter Quit to exit the program\n").strip().lower()
     
     if action == "book":
@@ -147,13 +147,13 @@ while True:
         
         if choice == "add new":
             print("\nOk lets add a new book!\n")
-            title = input("What is the title of your book?\n").strip()
-            isbn = input("What is the isbn of your book?\n").strip().lower().capitalize()
-            author = input("Who is the author of your book?\n").strip()
+            title = input("What is the title of your book?\n").strip().lower().title()
+            isbn = input("What is the isbn of your book?\n").strip()
+            author = input("Who is the author of your book?\n").strip().lower().title()
             Author.addAuthor(author)
             print("\n")
             Genre.displayAllGenres()
-            genre = input("\nWhich is the genre of your book? select from the list or enter 'new' to create new genre\n").strip().lower()
+            genre = input("\nWhich is the genre of your book? select from the list or enter 'new' to create new genre\n").strip().lower().title()
             Genre.addNew(genre)
             Book.addBook(Book(title, isbn, author, genre, True, 1))
             print(f"\n Your new book titled '{title}' of the '{genre}' Genre has been added to the Library!\n")
@@ -161,7 +161,7 @@ while True:
         elif choice == "borrow":
             print("\nOk lets borrow a book for you...\n")
             Book.displayBooks()
-            book = str(input("\nWhich book would you like to borrow?\n").strip().lower())
+            book = str(input("\nWhich book would you like to borrow?\n").strip().lower().title())
             Book.borrowBook(username, book)
 
         elif choice == "return":
@@ -170,12 +170,12 @@ while True:
             print("Here's a list of your books:")
             for book in bookList:
                 print(book)
-            book = str(input("\nWhich book would you like to return?").strip().lower())
+            book = str(input("\nWhich book would you like to return?").strip().lower().title())
             Book.returnBook(username, book)
 
         elif choice == "search":
             print("\nOk, lets search for a book...\n")
-            book = input("Enter the book title:\n").strip().lower()
+            book = input("Enter the book title:\n").strip().lower().title()
             Book.searchBook(book)
             
         elif choice == "display all":
@@ -197,12 +197,12 @@ while True:
         
         if choice == "add new":
             print("\nOk lets add a new user...")
-            name = input("\nWhats the name of your new user:\n")
+            name = input("\nWhats the name of your new user:\n").lower().title()
             User.addUser(name)
             
         elif choice == "user details":
             print("\nOk lets check out some user details...")
-            name = input("\nWhats the name of the user you want to know about?\n")
+            name = input("\nWhats the name of the user you want to know about?\n").lower().title()
             User.getUserDetails(name)
             
         elif choice == "display all":
@@ -222,13 +222,13 @@ while True:
         
         if choice == "add new":
             print("\nOk, lets add a new author...\n")
-            name = input("Please enter the name of the author you'd like to add...\n").strip()
+            name = input("Please enter the name of the author you'd like to add...\n").strip().lower().title()
             Author.addAuthor(name)
             
         elif choice == "author details":
             print("\nOk, lets pull up our list of authors:\n")
             Author.displayAllAuthors()
-            name = input("\nPlease enter the name of the author you'd like to check out... (case sensitive)\n").strip()
+            name = input("\nPlease enter the name of the author you'd like to check out... (case sensitive)\n").strip().lower().title()
             Author.getAuthorDetails(name)
 
         elif choice == "display all":
@@ -250,11 +250,11 @@ while True:
         choice = input("Choose from the following: Add new, Genre details, Display all, Books of genre, or 'exit' to return to the previous menu\n").strip().lower()
         if choice == "add new":
             print("\nOk, lets add a new genre..\n")
-            name = input("What's the name of the genre you'd like to add?").strip()
+            name = input("What's the name of the genre you'd like to add?").strip().lower().title()
             Genre.addNew(name)
             
         elif choice == "genre details":
-            genre = input("Ok, which genre would you like to know about?\n").strip()
+            genre = input("Ok, which genre would you like to know about?\n").strip().lower().title()
             details = Genre.getGenreDetails(genre)
             print(f"Here are the details for the genre '{genre}':")
             print(f" - '{details}'")
@@ -264,7 +264,9 @@ while True:
             Genre.displayAllGenres()
 
         elif choice == "books of genre":
-            genre = input("\nOk, which genre would you like to view the books of?\n")
+            print("\nOk, here's a list of all our genres:\n")
+            Genre.displayAllGenres()
+            genre = input("\nWhich genre would you like to view the books of?\n").strip().lower().title()
             Genre.viewGenreBooks(genre)
 
         elif choice == "exit":

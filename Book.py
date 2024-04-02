@@ -54,4 +54,4 @@ class Book:
         for book, details in LibraryBooks.items():
             print(f" - Title: {details.title}, ISBN: {details.isbn}, Author: {details.author}, Genre: {details.genre}, Available: {details.available}, Quantity: {details.quantity}\n")
 
-LibraryBooks = {"1984": Book("1984", 124345436, "George Orwell", "Science Fiction", True, 2), "treasure island": Book("treasure island", 8049323, "Robert Louis Stevenson", "Fantasy", False, 0), "harry potter": Book("harry potter", 9872343245, "JK Rowling", "Fantasy", True, 10)}
+LibraryBooks = {"1984": Book("1984", 124345436, "George Orwell", "Science Fiction", True, 2), "Treasure Island": Book("Treasure Island", 8049323, "Robert Louis Stevenson", "Fantasy", False, 0), "Harry Potter": Book("Harry Potter", 9872343245, "JK Rowling", "Fantasy", True, 10)}

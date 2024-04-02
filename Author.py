@@ -7,7 +7,7 @@ class Author:
         if name in authors:
             print(f"'{name}' is already in our authors database!")
         else:
-            bio = input("Please enter a one sentence bio for the author:\n").strip()
+            bio = input("Please enter a one sentence bio for the author:\n").strip().capitalize()
             authors[name] = Author(name,bio)
             print(f"\nAuthor '{name}' added to database!")
         

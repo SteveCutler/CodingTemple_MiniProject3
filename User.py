@@ -1,21 +1,18 @@
 
-import random
 class User:
     
-    def __init__(self, name, address, id):
+    def __init__(self, name, address):
         self.name = name
         self.__address = address
         self.__books = {}
-        self.__id = id
 
     def addUser(name):
         if name in Users:
             print(f"Found user '{name}' in our system...")
         else:
             print(f"Lets register user '{name}' so you can borrow books..\n")
-            address = input(f"What address would you like to put on file for {name}\n").strip()
-            id = (random.int(0,9))*7
-            Users[name] = User(name, address, id)
+            address = input(f"What address would you like to put on file for {name}\n").strip().lower().title()
+            Users[name] = User(name, address)
             print(f"User '{name}' added to database...\n")
 
     def getUserBooks(name):
@@ -42,7 +39,7 @@ class User:
         if name not in Users:
             print(f"The user '{name}' doesn't appear to be in our system!\n")
         else:
-            print(f" - {Users[name].name}, {Users[name].__address}, {Users[name].__id}")
+            print(f" - {Users[name].name}, {Users[name].__address}")
             if Users[name].__books:
                 print(f"\nHeres a list of books {name} currently has borrowed:")
                 bookList = User.getUserBooks(name)

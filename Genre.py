@@ -1,4 +1,5 @@
-from Book import Book
+
+from Book import LibraryBooks
 
 class Genre:
     def __init__(self, name, description):
@@ -14,12 +15,16 @@ class Genre:
             print(f"\n Genre '{name}' added to database!")
     
     def getGenreDetails(genre):
-        return Genres[genre].__description
-
+        if genre in Genres:
+            return Genres[genre].__description
+        else:
+            return print(f"\nSorry, I couldn't find genre {genre} in our database!\n")
+        
     def viewGenreBooks(genre):
-        for book, details in Book.LibraryBooks.items():
+        for book, details in LibraryBooks.items():
             if details.genre == genre:
-                print(details.title)
+                print(f" -{details.title}")
+
     
     def displayAllGenres():
         for genre in Genres.keys():
